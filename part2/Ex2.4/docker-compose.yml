@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: frontend
+    build: .
+    ports:
+      - 5000:5000
+    container_name: frontend
+
+  backend:
+    image: backend
+    build: .
+    environment:
+      REDIS_HOST: redis
+    ports:
+      - 8000:8080
+    container_name: backend
+
+  redis:
+    image: redis
+    restart: unless-stopped
+    container_name: redisproject
